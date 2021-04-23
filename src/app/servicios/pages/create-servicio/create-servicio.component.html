@@ -1,0 +1,121 @@
+<p-toast></p-toast>
+
+<div>
+    <h1>Agregar Servicios</h1>
+    <div class="p-col-4 p-my-4 p-pl-0">
+        <p-breadcrumb [model]="items"></p-breadcrumb>
+
+    </div>
+
+    <form [formGroup]="servicioForm">
+        <div class="p-grid">
+            <div class="p-col">
+
+
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="firstname1">Nombre</label>
+                        <input id="firstname1" type="text" pInputText placeholder="Nombre del servicio"
+                            formControlName="nombre">
+                        <p class="error"
+                            *ngIf="servicioForm.get('nombre').hasError('required') && servicioForm.get('nombre').touched">
+                            Nombre es requerido
+                        </p>
+                    </div>
+                    <div class="p-field">
+                        <label for="lastname1">Destino</label>
+                        <p-dropdown [options]="destinos" optionLabel="nombre" formControlName="locacion_id"
+                            placeholder="Selecciona un Destino">
+                        </p-dropdown>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Categoría</label>
+                        <p-dropdown [options]="categorias" optionLabel="nombre" formControlName="categoria_id"
+                            placeholder="Selecciona una Categoría">
+                        </p-dropdown>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Empresa</label>
+                        <p-dropdown [options]="empresas" optionLabel="nombre" formControlName="empresa_id"
+                            placeholder="Selecciona una Empresa"></p-dropdown>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Costo</label>
+                        <p-inputNumber mode="currency" currency="MXN" formControlName="costo">
+                        </p-inputNumber>
+                        <p class="error"
+                            *ngIf="servicioForm.get('costo').hasError('required') && servicioForm.get('costo').touched">
+                            Costo es requerido
+                        </p>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Descripción</label>
+                        <textarea pInputTextarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"
+                            formControlName="descripcion"></textarea>
+                        <p class="error"
+                            *ngIf="servicioForm.get('descripcion').hasError('required') && servicioForm.get('descripcion').touched">
+                            Descripción es requerida
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="p-col">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="firstname1">Dirección</label>
+                        <input id="firstname1" type="text" pInputText placeholder="Ejemplo : Av. Javier Rojo Gómez"
+                            formControlName="direccion">
+                        <p class="error"
+                            *ngIf="servicioForm.get('direccion').hasError('required') && servicioForm.get('direccion').touched">
+                            Dirección es requerida
+                        </p>
+                    </div>
+                    <div class="p-field">
+                        <label for="firstname1">Horario Apertura</label>
+                        <input id="firstname1" type="text" pInputText placeholder="Ejemplo : Lunes a Viernes 7:00 am "
+                            formControlName="horario_apertura">
+                        <p class="error"
+                            *ngIf="servicioForm.get('horario_apertura').hasError('required') && servicioForm.get('horario_apertura').touched">
+                            Horario de Apertura es requerido
+                        </p>
+
+                    </div>
+                    <div class="p-field">
+                        <label for="firstname1">Horario Cierre</label>
+                        <input id="firstname1" type="text" pInputText placeholder="Ejemplo : Lunes a Viernes 7:00 pm"
+                            formControlName="horario_cierre">
+                        <p class="error"
+                            *ngIf="servicioForm.get('horario_cierre').hasError('required') && servicioForm.get('horario_cierre').touched">
+                            Horario de Cierre es requerido
+                        </p>
+                    </div>
+                    <div class="fileInput">
+
+
+
+
+                        <p-fileUpload accept="image/*" maxFileSize="1000000" (onSelect)="onUpload($event)"
+                            (onRemove)="onRemove($event)" multiple="multiple" [showUploadButton]="false">
+
+                        </p-fileUpload>
+                    </div>
+
+
+
+                    <div class="p-field">
+                        <button pButton type="button" icon="pi pi-plus" label="Agregar servicio"
+                            class="p-button-secondary addButton" (click)="onSubmit()"
+                            [disabled]="!servicioForm.valid"></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

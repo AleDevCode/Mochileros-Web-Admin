@@ -1,0 +1,32 @@
+<p-toast position="center" key="d" ></p-toast>
+<div class="p-grid">
+    <div class="p-col psm-2 p-md-2 p-lg-2 pxl-2 p-mr-6">
+        <h1 class="p-text-bold">Hola, Admin {{usuario?.nombre}}</h1>
+    </div>
+    <div class="p-col ">
+        <div class="banner"><img src="/assets/images/banner-dash.webp" alt="banner"></div>
+
+    </div>
+</div>
+<div class="p-grid p-mt-6 cards">
+    
+    <div *ngFor="let card of cards" class="p-mr-auto p-mb-6">
+        <app-card [titulo]="card.titulo" [imagen]="card.img" [class]="card.class" routerLink = "{{card.routerLink}}">
+        </app-card>
+    </div>
+
+
+    <!-- <app-card [titulo]="cards[0].titulo" [imagen]="cards[0].img" [class]="cards[0].class" class="p-mr-auto p-mb-6">
+    </app-card>
+    <app-card [titulo]="cards[1].titulo" [imagen]="cards[1].img" [class]="cards[1].class" class="p-mr-auto p-mb-6">
+    </app-card>
+    <app-card [titulo]="cards[2].titulo" [imagen]="cards[2].img" [class]="cards[2].class" class="p-mr-auto p-mb-6">
+    </app-card>
+    <app-card [titulo]="cards[3].titulo" [imagen]="cards[3].img" [class]="cards[3].class" class="p-mr-auto p-mb-6">
+    </app-card>
+    <app-card [titulo]="cards[4].titulo" [imagen]="cards[4].img" [class]="cards[4].class" class="p-mr-auto p-mb-6">
+    </app-card>
+    <app-card [titulo]="cards[5].titulo" [imagen]="cards[5].img" [class]="cards[5].class" class="p-mr-auto p-mb-6">
+    </app-card> -->
+
+</div>

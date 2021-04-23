@@ -1,0 +1,73 @@
+<p-toast ></p-toast>
+<p-confirmDialog  [style]="{width: '20vw'}" header= "Eliminación" acceptLabel="Sí" rejectButtonStyleClass="p-button-danger">
+    
+</p-confirmDialog>
+
+<div class="p-grid">
+    <div class="p-col">
+        <h1 class="p-text-bold">Servicios</h1>
+    </div>
+    <div class="p-col-4 p-d-inline ">
+        <div class="p-d-flex">
+            <button class="p-button-rounded p-ripple p-button p-component p-button-icon-only  p-mt-3"
+                routerLink="create"><span class="p-button-icon pi pi-plus" aria-hidden="true"></span><span
+                    aria-hidden="true" class="p-button-label"></span></button>
+            <h2 class="p-ml-4">Agregar Servicio</h2>
+        </div>
+    </div>
+</div>
+
+<p-table #dt1 [value]="servicios"
+    [globalFilterFields]="['nombre', 'empresa_id.nombre', 'locacion_id.nombre', 'costo', 'categoria_id.nombre']"
+    styleClass=" p-datatable-gridlines" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10,25,50]">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between p-mb-4" style="float: right !important;">
+
+            <div class="p-d-flex ">
+                <!-- <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button> -->
+                <span class="p-input-icon-left p-ml-auto  search">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search keyword" class="search" />
+                </span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon>
+            </th>
+            <th>Portada</th>
+            <th pSortableColumn="empresa_id.nombre">Empresa<p-sortIcon field="empresa_id.nombre"></p-sortIcon>
+            </th>
+            <th pSortableColumn="locacion_id.nombre">Destino<p-sortIcon field="locacion_id.nombre"></p-sortIcon>
+            </th>
+            <th pSortableColumn="categoria_id.nombre">Categoría<p-sortIcon field="categoria_id.nombre"></p-sortIcon>
+            </th>
+            <th pSortableColumn="costo">Costo<p-sortIcon field="costo"></p-sortIcon>
+            </th>
+            <th>Opciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-servicio>
+        <tr>
+            <td>{{servicio?.nombre}}</td>
+            <td><img [src]="servicio?.fotos[0]?.url_img" [alt]="servicio?.nombre" width="100"
+                    class="p-shadow-4 " /></td>
+            <td>{{servicio?.empresa_id?.nombre }}</td>
+            <td>{{servicio?.locacion_id?.nombre}}</td>
+            <td>{{servicio?.categoria_id?.nombre}}</td>
+            <td>{{servicio?.costo | currency:'MXN'}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded   p-mr-2 "  routerLink = "edit/{{servicio._id}}"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded  p-mr-2" (click) = "showConfirm(servicio?._id)"></button>
+                <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded " routerLink = "/{{servicio._id}}"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            En total hay {{servicios ? servicios.length : 0 }} servicios.
+        </div>
+    </ng-template>
+</p-table>

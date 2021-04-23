@@ -1,0 +1,117 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '20vw'}" header="Eliminación" acceptLabel="Sí"
+    rejectButtonStyleClass="p-button-danger">
+
+</p-confirmDialog>
+
+<div class="p-grid">
+    <div class="p-col">
+        <h1 class="p-text-bold">Empresas</h1>
+    </div>
+    <div class="p-col-4 p-d-inline ">
+        <div class="p-d-flex">
+            <button (click)="openNew()"
+                class="p-button-rounded p-ripple p-button p-component p-button-icon-only  p-mt-3"><span
+                    class="p-button-icon pi pi-plus" aria-hidden="true"></span><span aria-hidden="true"
+                    class="p-button-label"></span><span></span></button>
+            <h2 class="p-ml-4">Agregar Empresa</h2>
+        </div>
+    </div>
+</div>
+
+<p-table #dt1 [value]="empresas" [globalFilterFields]="['nombre', 'telefono', 'descripcion', 'correo', 'sitio_web']"
+    styleClass=" p-datatable-gridlines" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10,25,50]">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between p-mb-4" style="float: right !important;">
+
+            <div class="p-d-flex ">
+                <span class="p-input-icon-left p-ml-auto  search">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search keyword" class="search" />
+                </span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon>
+
+            </th>
+            <th pSortableColumn="descripcion">Descripción<p-sortIcon field="descripcion"></p-sortIcon>
+            </th>
+            <th pSortableColumn="telefono">Teléfono<p-sortIcon field="telefono"></p-sortIcon>
+            </th>
+            <th pSortableColumn="correo">Correo<p-sortIcon field="correo"></p-sortIcon>
+            </th>
+            <th pSortableColumn="sitio_web">Sitio Web<p-sortIcon field="sitio_web"></p-sortIcon>
+            </th>
+
+
+
+            <th>Opciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-empresa>
+        <tr>
+            <td>{{empresa?.nombre}}</td>
+            <td>{{empresa?.descripcion}}</td>
+            <td>{{empresa?.telefono}}</td>
+            <td>{{empresa?.correo}}</td>
+            <td>{{empresa?.sitio_web}}</td>
+
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded   p-mr-2 "
+                    (click)="editEmpresa(empresa)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded  p-mr-2"
+                    (click)="showConfirm(empresa?._id)"></button>
+
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            En total hay {{empresas ? empresas.length : 0 }} empresas.
+        </div>
+    </ng-template>
+</p-table>
+
+
+
+<p-dialog [(visible)]="empresaDialog" [style]="{width: '450px'}" header="Empresa" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="nombre">Nombre</label>
+            <input type="text" pInputText id="nombre" [(ngModel)]="empresa.nombre" required autofocus />
+            <small class="p-error" *ngIf="submitted && !empresa.nombre">El nombre es requerido.</small>
+        </div>
+        <div class="p-field">
+            <label for="descripcion">Descripción</label>
+            <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"
+                [(ngModel)]="empresa.descripcion"></textarea>
+            <small class="p-error" *ngIf="submitted && !empresa.descripcion">La descripcion es requerida.</small>
+        </div>
+        <div class="p-field">
+            <label for="telefono">Teléfono</label>
+            <input type="text" pInputText id="telefono" [(ngModel)]="empresa.telefono" required autofocus />
+            <small class="p-error" *ngIf="submitted && !empresa.telefono">El telefono es requerido.</small>
+        </div>
+        <div class="p-field">
+            <label for="correo">Correo</label>
+            <input type="text" pInputText id="correo" [(ngModel)]="empresa.correo" required autofocus />
+
+        </div>
+        <div class="p-field">
+            <label for="sitio_web">Sitio Web</label>
+            <input type="text" pInputText id="sitio_web" [(ngModel)]="empresa.sitio_web" required autofocus />
+
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-danger" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" (click)="onSubmit()"></button>
+    </ng-template>
+</p-dialog>

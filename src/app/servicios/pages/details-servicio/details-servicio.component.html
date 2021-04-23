@@ -1,0 +1,33 @@
+<h1>Detalles {{servicio?.categoria_id.nombre}}</h1>
+
+<div class="p-grid">
+
+    <div class="p-col-5 ">
+        <p-breadcrumb [model]="items" class="p-mt-4"></p-breadcrumb>
+        <h1 class="p-mt-6">{{servicio?.nombre}}</h1>
+        <p>{{servicio?.descripcion}}</p>
+    </div>
+    <div class="p-col p-ml-6">
+        <div class="banner"><img src="{{servicio?.fotos[0].url_img}}" alt="{{servicio?.fotos[0].alt_img}}"></div>
+
+        <ul>
+            <li class="p-mt-2"><i class="pi pi-map-marker p-mr-4"
+                    style="font-size: 20px; font-weight : 900"></i>{{servicio?.locacion_id.nombre}}</li>
+            <li class="p-mt-2"><i class="pi pi-money-bill p-mr-4"
+                    style="font-size: 20px; font-weight : 900"></i>{{servicio?.costo | currency: 'MXN'}} </li>
+            <li class="p-mt-2"><i class="pi pi-clock p-mr-4"
+                    style="font-size: 20px; font-weight : 900"></i>{{servicio?.horario_apertura}}/
+                {{servicio?.horario_cierre}}</li>
+                <li class="p-mt-2"><i class="pi pi-map-marker p-mr-4"
+                    style="font-size: 20px; font-weight : 900"></i>{{servicio?.direccion}}</li>
+        </ul>
+    </div>
+
+</div>
+
+
+<div class="p-grid p-mt-6">
+    <div class="foto" *ngFor="let foto of servicio?.fotos">
+        <img src="{{foto.url_img}}" alt="{{foto.alt_img}}">
+    </div>
+</div>

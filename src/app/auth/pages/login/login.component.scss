@@ -1,0 +1,42 @@
+
+.login {
+    padding: 10% !important;
+    height: 100%;
+    // background: url(../../../../assets/images/background.jpg)  !important ;
+    // -webkit-background-size: cover;
+    // -moz-background-size: cover;
+    // -o-background-size: cover;
+    // background-size: cover;
+}
+
+.titulo{
+    margin-left: 35%;
+}
+
+
+.panel div{
+    width: 400px !important;
+    margin :auto !important; 
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.panel input {
+    margin-bottom: 10px !important;
+}
+
+.panel .p-fluid{
+    margin-bottom: 30px !important;
+    width: 80% !important;
+}
+
+
+
+@media (max-width:940px){
+   
+    .panel div{
+        width: auto !important;
+        margin :auto !important; 
+    }
+    
+  }

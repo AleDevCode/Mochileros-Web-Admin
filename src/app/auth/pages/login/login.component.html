@@ -1,0 +1,31 @@
+<h1 class="titulo">Sistema Administrativa</h1>
+<p-toast key="l" ></p-toast>
+<div class="login">
+    <p-panel header="Login" class="panel">
+        <form [formGroup]="loginForm" >
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field ">
+                    <label for="firstname1">Correo</label>
+                    <input formControlName="username" id="firstname1" type="text" pInputText>
+
+                    <p *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched">
+                        Correo es requerido
+                    </p>
+                </div>
+                <div class="p-field ">
+                    <label for="lastname1">Contraseña</label>
+                    <input formControlName="password" id="lastname1" type="password" pInputText>
+                    <p *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+                        Password es requerido
+                    </p>
+                </div>
+
+
+                <button pButton type="submit" class="p-button-raised p-button-info " label="Login"
+                    [disabled]="!loginForm.valid" (click) ="onSubmit()"></button>
+            </div>
+
+        </form>
+
+    </p-panel>
+</div>

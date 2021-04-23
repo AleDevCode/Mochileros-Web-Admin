@@ -1,0 +1,76 @@
+<div>
+    <h1>Agregar Hospedajes</h1>
+    <form [formGroup]="hospedajeForm">
+        <div class="p-grid">
+            <div class="p-col">
+
+
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="firstname1">Nombre</label>
+                        <input id="firstname1" type="text" pInputText placeholder="Nombre del hospedaje" formcontrolName="nombre">
+                    </div>
+                    <div class="p-field">
+                        <label for="lastname1">Destino</label>
+                        <p-dropdown [options]="cities" optionLabel="name" formcontrolName="locacion_id"></p-dropdown>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Categoría</label>
+                        <p-dropdown [options]="cities" optionLabel="name" formcontrolName="categoria_id"></p-dropdown>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Empresa</label>
+                        <p-dropdown [options]="cities" optionLabel="name" formcontrolName="empresa_id"></p-dropdown>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Costo</label>
+                        <p-inputNumber mode="currency" currency="MXN" formcontrolName="costo">
+                        </p-inputNumber>
+                    </div>
+
+                    <div class="p-field">
+                        <label for="firstname1">Descripción</label>
+                        <textarea pInputTextarea [rows]="5" [cols]="30" pInputTextarea
+                            autoResize="autoResize" formcontrolName="descripcion"></textarea>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="p-col">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="firstname1">Horario</label>
+                        <input id="firstname1" type="text" pInputText placeholder="Ejemplo : Lunes a Viernes 7:00 am 7:00 pm" formcontrolName="horario">
+                    </div>
+                    <div class="fileInput">
+
+
+
+
+                        <p-fileUpload accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)"
+                            multiple="multiple" [showUploadButton]="false" formcontrolName="fotos">
+
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </div>
+
+
+
+                    <div class="p-field">
+                        <button pButton type="button" icon="pi pi-plus" label="Agregar Hospedaje"
+                            class="p-button-secondary addButton"></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

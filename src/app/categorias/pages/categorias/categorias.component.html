@@ -1,0 +1,83 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '20vw'}" header="Eliminación" acceptLabel="Sí"
+    rejectButtonStyleClass="p-button-danger">
+
+</p-confirmDialog>
+
+<div class="p-grid">
+    <div class="p-col">
+        <h1 class="p-text-bold">Categorías</h1>
+    </div>
+    <div class="p-col-4 p-d-inline ">
+        <div class="p-d-flex">
+            <button (click)="openNew()"
+                class="p-button-rounded p-ripple p-button p-component p-button-icon-only  p-mt-3"><span
+                    class="p-button-icon pi pi-plus" aria-hidden="true"></span><span aria-hidden="true"
+                    class="p-button-label"></span><span></span></button>
+            <h2 class="p-ml-4">Agregar Categoría</h2>
+        </div>
+    </div>
+</div>
+
+<p-table #dt1 [value]="categorias"
+    [globalFilterFields]="['nombre']"
+    styleClass=" p-datatable-gridlines" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10,25,50]">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between p-mb-4" style="float: right !important;">
+
+            <div class="p-d-flex ">
+                <span class="p-input-icon-left p-ml-auto  search">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search keyword" class="search" />
+                </span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon>
+            </th>
+
+            <th>Opciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-categoria>
+        <tr>
+            <td>{{categoria?.nombre}}</td>
+
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded   p-mr-2 "
+                    (click)="editCategoria(categoria)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded  p-mr-2"
+                    (click)="showConfirm(categoria?._id)"></button>
+
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            En total hay {{categorias ? categorias.length : 0 }} categorias.
+        </div>
+    </ng-template>
+</p-table>
+
+
+
+<p-dialog [(visible)]="categoriaDialog" [style]="{width: '450px'}" header="Categoría" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="nombre">Nombre</label>
+            <input type="text" pInputText id="nombre" [(ngModel)]="categoria.nombre" required autofocus />
+            <small class="p-error" *ngIf="submitted && !categoria.nombre">El nombre es requerido.</small>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-danger" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" (click)="onSubmit()"></button>
+    </ng-template>
+</p-dialog>

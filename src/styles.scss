@@ -1,1 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
+
+:root {
+    --primary-color: #2E26D9;
+    --secondary-color: #00C8FB; 
+    --danger-color: #840000; 
+}
+
+html, body{
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+}
+
+*{
+    font-family: "Poppins";
+}
+
+
+// Clases para paginator
+
+.p-button{
+    background-color: var(--primary-color) !important;
+    border: none;
+}
+
+.p-paginator button span  {
+    background-color: white !important ;
+    color: black !important;
+}
+
+
+.p-paginator-pages   {
+    background-color: white !important ;
+    color: black !important;
+    border: none !important;
+}
+
+.p-dropdown-label, .p-dropdown-trigger-icon  {
+    background-color: white !important ;
+    color: black !important;
+}
+
+p{
+    font-size: 17px;
+}
+
+
+
+.p-button-success, .p-button-success span{
+    background-color: green !important;
+}
+
+.p-button-info, .p-button-info span{
+    background-color: var(--secondary-color) !important;
+}
+
+
+
+.p-button-danger, .p-button-danger span{
+    background-color: var(--danger-color) !important;
+}
+
+
+.p-breadcrumb span {
+    background-color: white !important;
+    color: black !important;
+    font-weight: 900;
+}
+
+.p-button{
+    color: white;
+}
+

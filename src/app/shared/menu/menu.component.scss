@@ -1,0 +1,56 @@
+.side{
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 18vw !important;
+    text-align: center;
+        h1{
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold !important;
+            }
+  
+        .logo{
+            height: 100px;
+            border-radius: 60px;
+           margin-top: 20px;
+            }
+    
+    }
+    
+
+.menu div,.menu ul,.menu li,.menu a,.menu span{
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border:var(--primary-color) !important ;
+}
+
+.menu ul span {
+    padding-left: 20px;
+}
+
+svg {
+    color: white !important;
+}
+.menu a:hover{
+    background-color: white !important;
+    color: black !important;
+        span{
+            background-color: white !important;
+            color: black !important;
+        }
+
+        svg {
+            color: black !important;
+        }
+}
+
+.menu div {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    width: 18vw !important;
+}
+
+

@@ -1,0 +1,40 @@
+.p-card:hover{
+    border: 2px solid var(--primary-color);
+}
+
+.p-card{
+    border: 2px solid var(--secondary-color);
+    border-radius: 20px;
+    text-align: center;
+    color: black;
+    font-weight: 100;
+}
+
+.small-card{
+    width: 160px;
+    height: 100px;
+    margin-bottom: 0 !important;
+}
+
+.large-card{
+    width: 450px;
+    height: 90px;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width:940px){
+   
+    .small-card{
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0 !important;
+    }
+    
+    .large-card{
+        width: 150px;
+        height: 100px;
+        margin-bottom: 0 !important;
+    }
+
+  }
+

@@ -1,0 +1,63 @@
+<p-toast ></p-toast>
+<p-confirmDialog  [style]="{width: '20vw'}" header= "Eliminación" acceptLabel="Sí" rejectButtonStyleClass="p-button-danger">
+    
+</p-confirmDialog>
+
+<div class="p-grid">
+    <div class="p-col">
+        <h1 class="p-text-bold">Usuarios</h1>
+    </div>
+
+</div>
+
+<p-table #dt1 [value]="usuarios" [globalFilterFields]="['nombre','email','bio']" styleClass=" p-datatable-gridlines"
+    [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10,25,50]">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between p-mb-4" style="float: right !important;">
+
+            <div class="p-d-flex ">
+                <span class="p-input-icon-left p-ml-auto  search">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search keyword" class="search" />
+                </span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <!-- <th>Profile Foto
+            </th> -->
+            <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon>
+            </th>
+            <th pSortableColumn="email">Email<p-sortIcon field="email"></p-sortIcon>
+            </th>
+            <th pSortableColumn="bio">Bio<p-sortIcon field="bio"></p-sortIcon>
+            </th>
+
+            <th>Opciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-usuario>
+        <tr>
+            <!-- <td><img [src]="usuario?.url_foto" width="100" class="p-shadow-4 " />
+            </td> -->
+            <td>{{usuario?.nombre}}</td>
+            <td>{{usuario?.email}}</td>
+            <td>{{usuario?.bio}}</td>
+
+
+            <td>
+
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded  p-mr-2"
+                    (click)="showConfirm(usuario?._id)"></button>
+
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            En total hay {{usuarios ? usuarios.length : 0 }} usuarios.
+        </div>
+    </ng-template>
+</p-table>
